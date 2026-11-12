@@ -1,0 +1,13 @@
+{
+  "state": "engine_failed",
+  "run_number": 1,
+  "started": "2026-11-10T20:07:31.527114+05:30",
+  "finished": "2026-11-10T20:08:38.777412+05:30",
+  "engine_elapsed_seconds": 67.237129000001,
+  "error": {
+    "type": "RuntimeError",
+    "message": "Analysis cancelled by user"
+  },
+  "capture_errors": [],
+  "scope": "Core design call only. UI/CAD updates occur afterwards. Failure-state output may contain partial or previous results. Engine completion is not structural adequacy."
+}

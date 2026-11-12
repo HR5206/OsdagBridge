@@ -1,0 +1,12 @@
+Traceback (most recent call last):
+  File "C:\Users\Haris\fossee-work\OsdagBridge\FOSSEE_Testing\capture_osdagbridge.py", line 105, in recorded_design
+    result = original(self, *args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Haris\fossee-work\OsdagBridge\src\osdagbridge\core\bridge_types\plate_girder\plategirderbridge.py", line 713, in design
+    dataset = self._run_stage("4G", self._reanalyze_with_dedup)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Haris\fossee-work\OsdagBridge\src\osdagbridge\core\bridge_types\plate_girder\plategirderbridge.py", line 593, in _run_stage
+    bridge_logger.check_cancel()
+  File "C:\Users\Haris\fossee-work\OsdagBridge\src\osdagbridge\core\utils\logger.py", line 176, in check_cancel
+    raise RuntimeError("Analysis cancelled by user")
+RuntimeError: Analysis cancelled by user

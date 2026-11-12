@@ -1,0 +1,36 @@
+{
+  "material_props": {
+    "steel_prop": {
+      "grade": "custom_steel_345_500",
+      "E": 205000000000.0,
+      "v": 0.3,
+      "rho": 78500.0,
+      "Fy": 345000000.0,
+      "Fu": 500000000.0,
+      "E0": 200000000000.0,
+      "b": 0.01
+    },
+    "concrete_prop": {
+      "grade": "custom_concrete_45_3.5",
+      "fck": 45.0,
+      "fctm": 3.5,
+      "Ecm": 35.0
+    }
+  },
+  "deck_layout": {
+    "carriageway_width": 7.5,
+    "crash_barrier_width": 0.5,
+    "footpath_width": 0.0,
+    "railing_width": 0.275,
+    "median_width": 0.0,
+    "n_footpaths": 0
+  },
+  "grillage_geometry": {
+    "L": 25.0,
+    "n_l": 6,
+    "n_t": 18,
+    "edge_dist": 1.05,
+    "ext_to_int_dist": 2.1,
+    "angle": 0.0
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "state": "engine_failed",
+  "run_number": 3,
+  "started": "2026-11-10T20:16:36.206691+05:30",
+  "finished": "2026-11-10T20:17:39.728734+05:30",
+  "engine_elapsed_seconds": 63.5003856000003,
+  "error": {
+    "type": "ValueError",
+    "message": "'material.deck.fck' is required but was not found in 'input_dict'. Populate 'material.deck.fck' before running the design check."
+  },
+  "capture_errors": [],
+  "scope": "Core design call only. UI/CAD updates occur afterwards. Failure-state output may contain partial or previous results. Engine completion is not structural adequacy."
+}

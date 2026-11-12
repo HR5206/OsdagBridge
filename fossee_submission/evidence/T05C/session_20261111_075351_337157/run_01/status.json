@@ -1,0 +1,10 @@
+{
+  "state": "engine_returned",
+  "run_number": 1,
+  "started": "2026-11-11T07:58:41.645073+05:30",
+  "finished": "2026-11-11T07:59:13.364238+05:30",
+  "engine_elapsed_seconds": 31.481619400000113,
+  "error": null,
+  "capture_errors": [],
+  "scope": "Core design call only. UI/CAD updates occur afterwards. Failure-state output may contain partial or previous results. Engine completion is not structural adequacy."
+}

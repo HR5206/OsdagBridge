@@ -1,0 +1,10 @@
+{
+  "started": "2026-11-10T20:05:43.967352+05:30",
+  "python": "3.12.16 | packaged by conda-forge | (main, Oct 26 2026, 11:29:01) [MSC v.1944 64 bit (AMD64)]",
+  "platform": "Windows-11-10.0.26300-SP0",
+  "process_id": 2120,
+  "working_directory": "C:\\Users\\Haris\\fossee-work\\OsdagBridge\\FOSSEE_Testing",
+  "recorder_sha256": "6b0fe2fd5ef726780a2546f8197fca08e470d53c048b30cb32d111e3ffafb218",
+  "method": "In-memory wrapper around PlateGirderBridge.design; original is called once. No design inputs, environment settings, solver logic or source files are changed.",
+  "verification_limit": "Recorder logic checked with fake success/failure backends. A full Windows OsdagBridge GUI run was not performed by the author."
+}

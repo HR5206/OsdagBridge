@@ -1,0 +1,5 @@
+diagonal tension: end-diaphragm=0.23, merged-for-display=0.18
+diagonal compression: end-diaphragm=0.54, merged-for-display=0.85
+chord tension: end-diaphragm=0.2, merged-for-display=0.16
+chord compression: end-diaphragm=0.47, merged-for-display=0.74
+Confirmed: this source merge retains CB values instead of the distinct ED values.

@@ -1,0 +1,21 @@
+Traceback (most recent call last):
+  File "C:\Users\Haris\fossee-work\OsdagBridge\FOSSEE_Testing\capture_osdagbridge.py", line 105, in recorded_design
+    result = original(self, *args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Haris\fossee-work\OsdagBridge\src\osdagbridge\core\bridge_types\plate_girder\plategirderbridge.py", line 757, in design
+    self._run_stage("5", self._run_dcr_checks, dataset)
+  File "C:\Users\Haris\fossee-work\OsdagBridge\src\osdagbridge\core\bridge_types\plate_girder\plategirderbridge.py", line 595, in _run_stage
+    result = func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Haris\fossee-work\OsdagBridge\src\osdagbridge\core\bridge_types\plate_girder\plategirderbridge.py", line 2297, in _run_dcr_checks
+    _, engine, design_results = run_design_check(
+                                ^^^^^^^^^^^^^^^^^
+  File "C:\Users\Haris\fossee-work\OsdagBridge\src\osdagbridge\core\bridge_types\plate_girder\designer.py", line 3235, in run_design_check
+    config = BridgeConfig.from_plate_girder_bridge(plate_girder_bridge)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Haris\fossee-work\OsdagBridge\src\osdagbridge\core\bridge_types\plate_girder\designer.py", line 332, in from_plate_girder_bridge
+    fck = float(_req(bridge.input_dict.get(KEY_MATERIAL_DECK_FCK),
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Haris\fossee-work\OsdagBridge\src\osdagbridge\core\bridge_types\plate_girder\designer.py", line 95, in _req
+    raise ValueError(
+ValueError: 'material.deck.fck' is required but was not found in 'input_dict'. Populate 'material.deck.fck' before running the design check.

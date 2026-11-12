@@ -1,0 +1,12 @@
+[DEBUG] Bridge Layout Sizing Result:
+  overall_width = 8.4 m
+  no_of_girders = 4
+  girder_spacing = 2.1 m
+  deck_overhang = 1.05 m
+Before: {'typical_section.deck_thickness': 300.0, 'typical_section.wearing_course.thickness': 75.0}
+After:  {'typical_section.deck_thickness': 250.0, 'typical_section.wearing_course.thickness': 50.0}
+Traceback (most recent call last):
+  File "/workspace/scratch/267416135c36/issue-review/pack/scripts/reproduce_save_reset.py", line 22, in <module>
+    assert after == before, "Save-path default expansion overwrote custom thicknesses"
+           ^^^^^^^^^^^^^^^
+AssertionError: Save-path default expansion overwrote custom thicknesses
