@@ -1,15 +1,18 @@
 # T05 — Additional geometry and component-output review
 
+**Packaged evidence:** [evidence/T05/](../evidence/T05/). File names below refer to this folder or its recorded session subfolder.
+
+
 **Test date:** 10 November 2026  
-**Status:** Inconclusive for the intended 300 mm deck / 75 mm wearing-course design. Component displays and the exported report were reviewed, but the input screenshots do not match the saved and reported geometry. The supplied archive contains no recorded design-call dictionaries.
+**Status:** Inconclusive for the intended 300 mm deck / 75 mm wearing-course design. Component displays and the exported report were reviewed, but the input screenshots do not match the saved and reported geometry. My archive contains no recorded design-call dictionaries.
 
 ## Purpose
 
 I intended to keep the 25 m custom-material bridge configuration and change the deck thickness to 300 mm and the concrete wearing-course thickness to 75 mm. I also inspected the girder, deck, cross-bracing, end-diaphragm and stiffener result views.
 
-The screenshots show the intended additional inputs, but the saved files and result views show a different configuration. I have preserved this attempt rather than marking the intended scenario as completed or assuming that the software ignored a correctly committed setting. A short controlled follow-up is needed to establish where the values diverged.
+The screenshots show the intended additional inputs, but the saved files and result views show a different configuration. I have preserved this attempt rather than marking the intended scenario as completed or assuming that the software ignored a correctly committed setting. I investigated the divergence in the separate T05B and T05C follow-ups.
 
-## Evidence supplied
+## Evidence I retained
 
 `t05.7z` contains `session_20261110_202805_071320` with two OSI files, eleven screenshots, a PDF report, its LaTeX source and session/source metadata. The session started at 20:28:05 local time (UTC+05:30), process ID 26392. It records Windows 11, Python 3.12.16 and repository commit `d74f56dd7f22925fb8148cabf5740ed8d1e39ff3`. Git status lists only the untracked evidence directories.
 
@@ -28,13 +31,13 @@ The report has 58 physical pages and the project title “T05 Highway Bridge Tes
 | Wearing-course density | Screenshot: **25.00 kN/m³** | **24.0 kN/m³** | Runtime value unavailable |
 | Girder spacing | Input-section image: **2.15 m** | See exact saved configuration | Report: **2.1 m** |
 | Deck overhang | Input-section image: **1.07 m** | See exact saved configuration | Deck result: **1050 mm**; report: **1.05 m** |
-| Skew | Intended 0°, no basic-input screenshot supplied | **null** | Report field blank |
+| Skew | Intended 0°, no basic-input screenshot captured | **null** | Report field blank |
 | Median / footpath | Intended No / None | No / None | Not independently demonstrated by a basic-input screenshot |
 | Design mode | Intended Optimized | Optimized | Report: Optimized |
 
 `T05_before.osi` and `T05_after.osi` each contain 588 keys and are equal as parsed mappings. Their equality establishes saved-file stability within this pair; it does not demonstrate that the intended changes were committed or used by a calculation.
 
-The deck/spacing/overhang differences suggest that the input preview and reviewed results represent different geometry states. Possible causes include settings not being committed, a later input reset, a different application window or an evidence-folder mismatch. The supplied files do not distinguish these possibilities. I have not filed a software bug for this discrepancy yet.
+The deck/spacing/overhang differences suggest that the input preview and reviewed results represent different geometry states. Possible causes include settings not being committed, a later input reset, a different application window or an evidence-folder mismatch. These files alone do not distinguish the possible causes. I later isolated the main Save Input reset in T05B and reported it as issue #71; I have kept the original T05 attempt inconclusive.
 
 ## Custom materials in the saved files
 
@@ -48,7 +51,7 @@ The deck retains `custom_concrete_45_3.5`, density 25.5 kN/m³, fck 45 MPa, fctm
 
 `03_overview_a.png` is the Girder 1 / SW **Details** view, rather than the main utilization summary. It shows the custom steel grade, welded slender section, 1390 mm depth, 8 mm web, and top/bottom flange widths of 420 mm with 18 mm thickness. It lists a mass near 187 kg/m and area near 0.0239 m².
 
-`03_overview_b.png` shows a rendered bridge CAD model. A static image establishes rendering, but not rotation responsiveness or precise model dimensions. No separate T05 confirmation of rotation or plot interaction was supplied with this archive.
+`03_overview_b.png` shows a rendered bridge CAD model. A static image establishes rendering, but not rotation responsiveness or precise model dimensions. I did not record a separate T05 confirmation of rotation or plot interaction in this archive.
 
 The report's physical page 10, Table 2.7, labels the girder dimensions as 1.39 mm, 0.008 mm, 0.42 mm and 0.018 mm. These conflict with the displayed 1390/8/420/18 mm values by a factor of 1000. This repeats the report-unit finding already identified in the earlier cases. The earlier source diagnosis concerned appending mm to metre-valued post-design fields; the report formatting and data-unit contract need correction together.
 
@@ -111,21 +114,21 @@ This confirms displayed section data and the preview. It is not evidence that ev
 
 ## Overall report status
 
-The supplied report states an overall failed design, a maximum girder utilization of approximately 2.00 and fatigue as the governing check. It reports live-load deflection 25.164 mm against approximately 31.2 mm, and total-load deflection 55.321 mm against approximately 41.7 mm, with the latter marked FAIL. These values agree with the earlier 25 m baseline results but do not establish a new 300/75 run.
+The generated report states an overall failed design, a maximum girder utilization of approximately 2.00 and fatigue as the governing check. It reports live-load deflection 25.164 mm against approximately 31.2 mm, and total-load deflection 55.321 mm against approximately 41.7 mm, with the latter marked FAIL. These values agree with the earlier 25 m baseline results but do not establish a new 300/75 run.
 
 The successful observations in this attempt are the availability of component result views, CAD rendering, retention of custom property values in the saved OSIs and several GUI/report numerical agreements. The unresolved items are input-to-result consistency, runtime dictionary capture and full component calculation validation.
 
-## Required follow-up: T05B
+## Follow-up completed in T05B and T05C
 
-I will retain this attempt unchanged and make one controlled follow-up. Before calculating, I will explicitly enter skew 0, commit the 300 mm deck and 75 mm wearing-course settings with the Additional Inputs Save button, reopen that dialog to check persistence, and inspect a newly saved OSI for those two exact values. If either value has reverted, I will preserve the mismatch and stop before Design.
+I retained this attempt unchanged. In T05B, I checked the committed 300 mm deck and 75 mm wearing-course values, then isolated the main Save Input action. The saved file reverted to 250/50. T05B contains the detailed comparison and source-function reproduction.
 
-If both values remain correct, I will run Design with the recorder and verify that a new run folder appears. The minimal additional evidence is the saved input, resulting run folder, one deck-result screenshot and the report. The eleven existing component screenshots need not be repeated unless their values or behavior change materially.
+In T05C, I used direct Design after saving Additional Inputs and captured a new run folder, deck-result screenshot and report. That follow-up verified 300/75 through execution. The eleven T05 component screenshots remain evidence of their original displayed state.
 
-No new issue is justified for the 300/75 discrepancy until this sequence isolates the trigger. Existing report inconsistencies can be reported with their own specific evidence after duplicate checking. No GitHub issue or comment was posted in this review.
+I reported the isolated save-path defect in [issue #71](https://github.com/Nidhikhare12/OsdagBridge/issues/71). Related report findings are linked in the final [issue register](../issues/LIVE_ISSUES.md). This later reporting does not turn the inconclusive T05 run into a successful 300/75 test.
 
 ## Original evidence manifest
 
-Paths are relative to the supplied T05 session folder. These hashes identify the unmodified attachments.
+Paths are relative to my T05 session folder. These hashes identify the unmodified attachments.
 
 | File | SHA-256 |
 |---|---|

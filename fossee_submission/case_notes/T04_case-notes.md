@@ -1,5 +1,8 @@
 # T04 — Custom materials after reopening a saved design
 
+**Packaged evidence:** [evidence/T04/](../evidence/T04/). File names below refer to this folder or its recorded session subfolder.
+
+
 **Test date:** 10 November 2026  
 **Test type:** Fresh-session OSI reload, material information and design execution  
 **Result:** FAIL — the custom steel information dialog raises an exception, custom concrete properties are lost, and Design stops because the required concrete strength is null.
@@ -10,7 +13,7 @@ I checked whether the custom materials used in my completed T03 design survived 
 
 I used `T04_source.osi`, copied from T03's `run_03/R3_after.osi`. A byte-for-byte comparison confirms that the two files are identical. The source contains the complete custom steel and concrete properties; the missing concrete values were not missing from the original saved file.
 
-The linked T03 session records source commit `d74f56dd7f22925fb8148cabf5740ed8d1e39ff3`, Windows 11 and Python 3.12.16. The subsequently supplied T04 recorder session independently confirms the same commit, Windows 11 and Python 3.12.16. It started at 20:05:43 (UTC+05:30), process ID 2120. Its Git status records only the untracked evidence directories `FOSSEE_Testing/` and `screening/`. The screenshot tracebacks agree with the relevant line locations in that source. I have not treated a failed design as a completed engineering result.
+The linked T03 session records source commit `d74f56dd7f22925fb8148cabf5740ed8d1e39ff3`, Windows 11 and Python 3.12.16. My T04 recorder session independently confirms the same commit, Windows 11 and Python 3.12.16. It started at 20:05:43 (UTC+05:30), process ID 2120. Its Git status records only the untracked evidence directories `FOSSEE_Testing/` and `screening/`. The screenshot tracebacks agree with the relevant line locations in that source. I have not treated a failed design as a completed engineering result.
 
 ## Input configuration
 
@@ -28,7 +31,7 @@ The linked T03 session records source commit `d74f56dd7f22925fb8148cabf5740ed8d1
 | Girder, cross-bracing and end-diaphragm grade | custom_steel_345_500 |
 | Concrete grade | custom_concrete_45_3.5 |
 
-The exact combination of all 580 saved input keys is preserved in the source OSI. The wearing-course density above is the saved value; no wearing-course UI screenshot was supplied for T04, and this case does not resolve the separate T03 wearing-course discrepancy.
+The exact combination of all 580 saved input keys is preserved in the source OSI. The wearing-course density above is the saved value; I did not capture a wearing-course UI screenshot for T04, and this case does not resolve the separate T03 wearing-course discrepancy.
 
 ### Material values before reload
 
@@ -179,11 +182,11 @@ designer.py:332 -> required material.deck.fck lookup
 designer.py:95 -> ValueError
 ```
 
-The core files are under `src/osdagbridge/core/bridge_types/plate_girder/`. The error text says “not found,” but the supplied pre-design OSI contains the key with a null value. The source requirement helper rejects both `None` and an empty string. I therefore describe this as a missing required value, not proof that the key itself was deleted.
+The core files are under `src/osdagbridge/core/bridge_types/plate_girder/`. The error text says “not found,” but my pre-design OSI contains the key with a null value. The source requirement helper rejects both `None` and an empty string. I therefore describe this as a missing required value, not proof that the key itself was deleted.
 
 The backend check should continue rejecting an absent concrete strength. The fix belongs in material restoration and early validation; inserting an arbitrary fck or suppressing the exception would conceal the data loss. An early validation message should identify the incomplete custom material before a lengthy analysis begins.
 
-No successful T04 output dictionary, final design report or newly generated CAD model has been verified. The supplied recorder folder contains `output_at_failure.json` for all three attempts, not successful `output_after.json` files. Each failure output has 580 keys and exactly equals that attempt's post-call input dictionary. These are partial state snapshots, not completed calculation results.
+No successful T04 output dictionary, final design report or newly generated CAD model has been verified. My recorder folder contains `output_at_failure.json` for all three attempts, not successful `output_after.json` files. Each failure output has 580 keys and exactly equals that attempt's post-call input dictionary. These are partial state snapshots, not completed calculation results.
 
 ## Duplicate check and reporting decision
 
@@ -191,7 +194,7 @@ The upstream open and closed issue list was checked on 10 November 2026. Existin
 
 The reviewed issue list did not contain a separate issue specifically naming the `defaults` UnboundLocalError. Because it is triggered by the same reload sequence, the first reporting step should be to add this traceback and its separate one-line initialization fix to #19. A separate narrowly scoped issue should only be opened after checking the issue discussion and confirming that maintainers want it tracked separately.
 
-No issue or comment was posted during this review. An existing issue link is a reference, not a claim that I created that issue.
+I added these findings in [my comment on issue #19](https://github.com/Nidhikhare12/OsdagBridge/issues/19#issuecomment-6797191826). The original issue belongs to its original reporter; my contribution is the additional evidence and diagnosis.
 
 ### Draft additional finding for issue #19
 
@@ -225,7 +228,7 @@ These are proposed checks, not tests already executed on a patched build.
 | 03_deck_info.png | Concrete dialog showing blank/defaulted properties |
 | 04_design_error.png | Handled missing-fck design failure and traceback |
 
-I did not need another video to establish these failures. The supplied files and screenshots give a reproducible starting point, a precise data comparison and two visible exceptions. The subsequently supplied recorder folder completes the runtime evidence for this session. It confirms the null concrete inputs and the missing-fck failure, and records two preceding cancellation exits.
+My saved files and screenshots record the starting state, data comparison and two visible exceptions. The recorder folder provides the runtime evidence for this session. It confirms the null concrete inputs and the missing-fck failure, and records two preceding cancellation exits.
 
 **Conclusion:** T04 fails custom-material persistence and subsequent design execution. T03's successful same-session runs and this failed fresh-session reload identify a useful trigger condition: the saved property values exist on disk, but the UI's custom-material state is not restored consistently.
 
@@ -261,4 +264,4 @@ The runtime steel object retains E = 205 GPa, Fy = 345 MPa and Fu = 500 MPa, but
 
 `output_before.json` is empty for attempt 1. Attempts 2 and 3 contain 580 entries of prior partial state. This differs from the empty pre-run outputs captured for T03's successful sequence. It does not establish that stale values were displayed to the user; failure-state outputs must be kept distinct from valid results.
 
-The additional supplied runtime files are retained under their original session and run paths. No further repetition of T04 is needed to establish these observations.
+I retained the runtime files under their original session and run paths. These files support the observations recorded above.

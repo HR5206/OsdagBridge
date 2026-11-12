@@ -1,5 +1,8 @@
 # T03 — Three consecutive designs with custom materials
 
+**Packaged evidence:** [evidence/T03/](../evidence/T03/). File names below refer to this folder or its recorded session subfolder.
+
+
 **Test date:** 10 November 2026 (local timestamps, UTC+05:30)  
 **Sequence:** 25 m → 20 m → 25 m in one recorded application session  
 **Result:** The three engine calls completed without captured exceptions. The plots updated and the final 25 m run reproduced the first run's captured numerical results. Material-density and data-consistency findings remain open. All three generated designs report an overall engineering status of FAIL.
@@ -8,11 +11,11 @@
 
 I wanted to check whether changing the span between designs updated the calculations and graphics without restarting the application. Returning to the original span gave me a direct comparison with the first run. I kept the same custom steel and concrete material selections for this sequence.
 
-I reported no errors during my recording. The video has not been reviewed for these notes; the findings below come from the supplied screenshots, saved inputs, captured dictionaries, runtime properties and PDF reports. A completed analysis is recorded separately from a structurally passing design.
+I reported no errors during my recording. The video has not been reviewed for these notes; the findings below come from my screenshots, saved inputs, captured dictionaries, runtime properties and PDF reports. A completed analysis is recorded separately from a structurally passing design.
 
 ## Evidence and environment
 
-The original evidence archive is `session_20261110_185755_761615.zip`. It contains one session record and three numbered run folders. Each run contains the before/after input and output dictionaries, runtime properties, status, two OSI files, a CAD screenshot, a deflection screenshot and a PDF report. I have kept these original files unchanged.
+My original session was `session_20261110_185755_761615`. Its extracted files are included under `evidence/T03/`, with one session record and three numbered run folders. Each run contains the before/after input and output dictionaries, runtime properties, status, two OSI files, a CAD screenshot, a deflection screenshot and a PDF report. I have kept these original files unchanged.
 
 The session metadata records Windows 11, Python 3.12.16 (conda-forge), process ID 23780 and repository commit `d74f56dd7f22925fb8148cabf5740ed8d1e39ff3`. The recorded Git status lists the untracked `FOSSEE_Testing/` and `screening/` directories and no tracked changes. The session started at 18:57:55.
 
@@ -147,7 +150,7 @@ After normalizing numeric strings for comparison, each saved before-OSI differs 
 | typical_section.railing.width | 0.0 | 0.275 |
 | typical_section.railing.load_value | 1.4715 | 6.806 |
 
-These discrepancies occur in all three runs. No footpath is selected, so the changed railing values do not by themselves establish an applied-load error. The wearing-course density difference is directly relevant to loading, but the exact save/reload or UI update event responsible has not yet been isolated. The next test will capture a fresh-session reload without re-entering materials.
+These discrepancies occur in all three runs. No footpath is selected, so the changed railing values do not by themselves establish an applied-load error. The wearing-course density difference is directly relevant to loading, but the exact save/reload or UI update event responsible has not yet been isolated. I followed this with T04, which captures a fresh-session reload without re-entering materials.
 
 Each design call changes 35 input dictionary entries concerning girder dimensions and optimized thicknesses. For example, R1 depth changes from 1390 to 1.39, flange width from 420 to 0.42, and thickness selections from `All` to resolved metre values. These are consistent with unit conversion and optimization, not automatic proof of corruption. Any UI/report consuming the post-design dictionary must nevertheless convert units correctly.
 
@@ -159,7 +162,7 @@ I entered 77.0 kN/m³, and all three captured input dictionaries retain that val
 
 The proposed change is to read `material.girder.density` for custom grades and convert kN/m³ to N/m³ before constructing `SteelProperties`, with validation for missing, nonfinite or nonpositive values. A focused regression check should assert that an input of 77 produces 77000, while a standard database grade keeps its database density. The application's `rho` field is used here as weight density; it must not be confused with kg/m³.
 
-This is already covered by [upstream issue #20](https://github.com/Nidhikhare12/OsdagBridge/issues/20). I should add the three runtime captures as supporting evidence rather than open a duplicate.
+This is already covered by [upstream issue #20](https://github.com/Nidhikhare12/OsdagBridge/issues/20). I added supporting evidence in [my comment on #20](https://github.com/Nidhikhare12/OsdagBridge/issues/20#issuecomment-6797253814).
 
 ### 2. Crash-barrier width changes in the runtime layout
 
@@ -167,11 +170,11 @@ The captured input uses `typical_section.crash_barrier.width = 0.45` m in all th
 
 The proposed change is to resolve the width from the validated input dictionary when constructing the deck-layout DTO, using the default only when the field is absent. A regression check should set a nondefault width and compare the UI/input, DTO and downstream layout dimensions. This capture establishes the input-to-runtime mismatch; it does not quantify the resulting engineering error.
 
-The current issue list was checked on 10 November 2026. No issue specifically about this width mismatch was found in the returned list. A final duplicate check and focused reproduction are still required before publishing a new issue. No issue has been posted as part of this review.
+I checked the issue list on 10 November 2026 and found no report specifically covering this width mismatch in the returned list. After the later T06 comparison and duplicate review, I published [issue #74](https://github.com/Nidhikhare12/OsdagBridge/issues/74).
 
 ### Related existing issues
 
-- [#19](https://github.com/Nidhikhare12/OsdagBridge/issues/19): OSI reload does not restore custom-material field maps. This is relevant to the next fresh-session test; T03 does not itself prove that reload bug.
+- [#19](https://github.com/Nidhikhare12/OsdagBridge/issues/19): OSI reload does not restore custom-material field maps. I tested this separately in T04; T03 alone does not prove the reload bug.
 - [#41](https://github.com/Nidhikhare12/OsdagBridge/issues/41): custom concrete density is not passed into deck loading. T03 preserves the requested density in inputs but does not directly capture the deck-load call argument.
 - [#43](https://github.com/Nidhikhare12/OsdagBridge/issues/43): independent cross-bracing/end-diaphragm materials are not used. T03 uses the same grade, so it cannot isolate this defect.
 - [#44](https://github.com/Nidhikhare12/OsdagBridge/issues/44): design/CAD generation completes with fatigue utilization above 100%. T03 reproduces that observation. Generating a failed design for inspection is not inherently an error; the important question is whether failure is clearly reported and the promised optimization behavior is met.
@@ -191,7 +194,7 @@ The current issue list was checked on 10 November 2026. No issue specifically ab
 | Saved-file persistence | Before/after OSIs identical in each run | Fresh-process reload test |
 | Video | Recording reported complete | Video not inspected for these notes |
 
-I would mark T03 as **passed for the tested consecutive-run behavior, with data-consistency defects recorded**. I would not label the overall bridge designs as passing. This case supplies useful evidence for the submission, but it does not yet complete all component and report-verification requirements.
+I recorded T03 as **passed for the tested consecutive-run behavior, with data-consistency defects recorded**. I would not label the overall bridge designs as passing. This case covers the consecutive-run sequence. The later cases and final report record the additional component checks and remaining coverage limits.
 
 ## Evidence manifest
 

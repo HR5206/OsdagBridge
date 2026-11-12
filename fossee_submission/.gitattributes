@@ -1,0 +1,7 @@
+# Preserve the original evidence bytes, including Windows line endings.
+* text=auto eol=lf
+evidence/** -text
+scripts/review_results/** -text
+*.pdf -text
+*.png -text
+*.zip -text

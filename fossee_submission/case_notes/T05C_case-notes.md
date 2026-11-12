@@ -1,5 +1,8 @@
 # T05C — Direct design with a 300 mm deck and 75 mm wearing course
 
+**Packaged evidence:** [evidence/T05C/](../evidence/T05C/). File names below refer to this folder or its recorded session subfolder.
+
+
 **Test date:** 11 November 2026  
 **Functional result:** PASS for the tested input-retention path. The intended thicknesses reached the backend and agree with the output dictionary and report.  
 **Engineering result:** FAIL overall, as reported by the application.  
@@ -11,7 +14,7 @@ I tested whether Design could use my custom deck and wearing-course thicknesses 
 
 The screenshots show deck thickness 300 mm, wearing-course thickness 75 mm and the Additional Inputs “Inputs saved successfully” message. The recorder establishes the actual values at the backend boundary. Its completed run and the resulting deck screen provide stronger evidence than the input preview alone.
 
-No OSI export was supplied for this case. This was intentional in the requested workflow because the main Save Input action was the defect under investigation. The recorder's complete input dictionaries preserve the executed parameter combination instead. Earlier OSI evidence remains available in T01–T05B.
+I did not export an OSI for this case because the main Save Input action was the defect under investigation. I used direct Design after saving the Additional Inputs dialog. The recorder's complete input dictionaries preserve the executed parameter combination instead. Earlier OSI evidence remains available in T01–T05B.
 
 ## Environment and execution record
 
@@ -67,8 +70,8 @@ The full 588-key combination is retained in `run_01/input_before.json`. Selected
 | Weight density, kN/m³ | 77 | 25.5 |
 | Yield / ultimate strength, MPa | 345 / 500 | Not applicable |
 | Elastic modulus, GPa | 205 | Ecm = 35 |
-| Shear modulus, GPa | 78.8 | Not supplied |
-| Poisson's ratio | 0.3 | Not supplied |
+| Shear modulus, GPa | 78.8 | Not specified |
+| Poisson's ratio | 0.3 | Not specified |
 | fck / fctm, MPa | Not applicable | 45 / 3.5 |
 | Thermal coefficient, ×10⁻⁶/°C | 11.7 | 10.5 |
 
@@ -151,7 +154,7 @@ The input width is 0.45 m; the runtime deck-layout object contains 0.5 m. This r
 
 ### Report wording contradicts its own cover check
 
-The deck result dictionary recommends 75 mm cover and identifies the exposure as “Extreme,” while the supplied top/bottom cover is 50 mm. The report p. 41 marks the cover row FAIL but then states that all reinforcement provisions satisfy strength and detailing requirements. The contradiction in the report wording remains. I have not independently validated how the exposure category or required cover was selected.
+The deck result dictionary recommends 75 mm cover and identifies the exposure as “Extreme,” while my entered top/bottom cover is 50 mm. The report p. 41 marks the cover row FAIL but then states that all reinforcement provisions satisfy strength and detailing requirements. The contradiction in the report wording remains. I have not independently validated how the exposure category or required cover was selected.
 
 ## What this case proves
 
@@ -159,7 +162,7 @@ T05C demonstrates one successful path from the saved Additional Inputs dialog to
 
 T05B's separate Save Input defect remains open. Bypassing that action in one successful run does not fix saved-file persistence, prove that all Design paths preserve custom inputs, or establish that the complete bridge design is adequate.
 
-The output includes girder design, deck design, cross-bracing and end-diaphragm result dictionaries. This case focuses its detailed GUI comparison on the deck; the broader component screenshots were supplied in T05. No new CAD or plot screenshot or interaction confirmation was included in this archive, so I do not claim a new T05C CAD-rotation or plot-interaction pass. Earlier evidence covers those interactions for other cases.
+The output includes girder design, deck design, cross-bracing and end-diaphragm result dictionaries. This case focuses its detailed GUI comparison on the deck; I retained the broader component screenshots in T05. I did not capture new CAD/plot screenshots or record an interaction confirmation for T05C, so I have not marked those interactions as passed in this case. Earlier evidence covers those interactions for other cases.
 
 ## Evidence inventory
 

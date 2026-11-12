@@ -1,8 +1,11 @@
 # T06 — Input validation, skew geometry and separate custom materials
 
+**Packaged evidence:** [evidence/T06/](../evidence/T06/). File names below refer to this folder or its recorded session subfolder.
+
+
 **Tested by:** Harish Raghav  
 **Date:** 11 November 2026  
-**Evidence folder:** `t06/`  
+**Evidence folder:** `evidence/T06/`  
 **Source commit:** `d74f56dd7f22925fb8148cabf5740ed8d1e39ff3`
 
 ## What I tested
@@ -177,7 +180,7 @@ Several inconsistencies remain:
 2. **Wrong concrete label:** physical page 50 labels the deck concrete as M40 despite the selected custom material and fck = 45 MPa.
 3. **Force/UR mismatch:** physical page 40 lists the G1–G2 cross-bracing diagonal demand as 9.239 kN, capacity 13.930 kN and UR 0.850. The displayed demand divided by capacity is approximately 0.663. Its chord row shows 8.014/17.440 ≈ 0.460, but UR 0.740. These values do not describe a consistent demand/capacity pair. Page 43 uses a different governing compression demand, 11.84 kN, which is consistent with approximately 0.85. This supports a result-selection/mapping investigation, rather than assuming the underlying capacity calculation is wrong.
 
-The original PDF is retained unchanged as evidence. No issue number has been assigned in these notes; current GitHub issues must be checked before posting a new report or adding findings to an existing one.
+The original PDF is retained unchanged as evidence. After duplicate checking, I published issues [#72](https://github.com/Nidhikhare12/OsdagBridge/issues/72), [#73](https://github.com/Nidhikhare12/OsdagBridge/issues/73) and [#74](https://github.com/Nidhikhare12/OsdagBridge/issues/74), and added findings to existing issues. The [live register](../issues/LIVE_ISSUES.md) links to all posts.
 
 ## Outcome and limits
 
@@ -195,4 +198,4 @@ The original PDF is retained unchanged as evidence. No issue number has been ass
 
 T06 adds invalid-input handling, a wider skew bridge and distinct component material selections to the previous cases. It is one design run, so the evidence for three consecutive designs remains in T03. The complete input JSON files retain the other loading and member options for reproduction. I have not marked untouched options, every load combination, every component calculation or every possible boundary as independently verified.
 
-The planned manual evidence collection is complete. The remaining submission work is to consolidate the findings, check existing GitHub issues, prepare the supported bug reports, and compile the final report and submission files.
+I completed this case and included its findings in the final report. The issue register records the published bug reports and supporting comments; the evidence folder contains the original captured files.

@@ -1,5 +1,10 @@
 # OsdagBridge
 
+## FOSSEE screening submission - Harish Raghav S
+
+My OsdagBridge software-testing submission is in [fossee_submission](fossee_submission/README.md). It includes the [PDF report](fossee_submission/report/OsdagBridge_Testing_Report_Harish_Raghav.pdf), [test notes](fossee_submission/case_notes/), [original evidence](fossee_submission/evidence/) and [published issue links](fossee_submission/issues/LIVE_ISSUES.md).
+
+
 OsdagBridge is a modular, shared-core software plugin for the analysis and design of steel bridges within the Osdag ecosystem.  
 It supports desktop (PySide6), web (Django + React), and CLI interfaces through a unified Python core.
 

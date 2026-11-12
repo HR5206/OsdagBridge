@@ -1,8 +1,11 @@
 # T02 — Custom steel and concrete: UI and saved-file retention
 
+**Packaged evidence:** [evidence/T02/](../evidence/T02/). File names below refer to this folder or its recorded session subfolder.
+
+
 **Tester:** Harish Raghav S  
 **Date:** 8 November 2026  
-**Result:** The supplied before/after files and material dialogs retain the custom properties. The generated report contains failed structural checks and reporting inconsistencies. Use of every custom property inside the solver remains unverified.
+**Result:** My before/after files and material dialogs retain the custom properties. The generated report contains failed structural checks and reporting inconsistencies. Use of every custom property inside the solver remains unverified.
 
 ## 1. What I tested
 
@@ -25,15 +28,15 @@ This case checks whether the custom values remain visible and saved after the ru
 | Exact runtime and completion timestamp | Not captured; T01's 125.99-second duration does not apply to T02 |
 | Main output dock | Not included: `03_result.png` shows the model only |
 | Desktop version / commit / operating-system release | Not captured |
-| Raw runtime input/output dictionaries | Not supplied |
+| Raw runtime input/output dictionaries | Not captured |
 
-The files are labelled before and after by the tester. Their contents can be compared, but the files themselves do not independently establish when each save occurred. No continuous recording was supplied for this case.
+I labelled the files before and after. Their contents can be compared, but the files alone do not independently establish when each save occurred. The evidence package for this case contains no continuous recording.
 
 ## 3. Exact material comparison
 
 ### Steel
 
-The dialog is consistent with the intended girder material check. The saved files assign the same custom grade and properties to the girder, cross bracing and end diaphragm. Separate post-run cross-bracing/end-diaphragm dialogs were not supplied.
+The dialog is consistent with the intended girder material check. The saved files assign the same custom grade and properties to the girder, cross bracing and end diaphragm. I did not capture separate post-run cross-bracing/end-diaphragm dialogs.
 
 | Property | Before screenshot | Before OSI | After OSI | After screenshot |
 | --- | --- | --- | --- | --- |
@@ -71,7 +74,7 @@ SHA-256 for both `T02_before.osi` and `T02_after.osi`:
 
 `58dc01982e6e495d475ffe88d9664e5df99a85b6f6924869d403abc0993abbab`
 
-This establishes that the supplied saved snapshots agree. It does not turn an OSI into an output dictionary or prove that intermediate runtime state never changed.
+This establishes that my saved snapshots agree. It does not turn an OSI into an output dictionary or prove that intermediate runtime state never changed.
 
 ## 4. Changes from T01
 
@@ -123,7 +126,7 @@ The project overview on p.3 reports **Fail (Fatigue Normal Stress, Int.Stiff: Le
 
 Deck flexural checks are marked PASS in the report. Cross-bracing and end-diaphragm capacity tables also show PASS, but the report inconsistencies described below limit what can be concluded from those labels.
 
-The supplied CAD image shows the deck, side barriers, girder/stiffener details and end bracing. I confirmed that CAD rotation worked. This confirms that interaction, not exact component dimensions or structural adequacy. No separate T02 analysis-dialog screenshot was supplied. The PDF includes a bending-moment envelope on p.21; its presence is verified, its numerical correctness is not independently established.
+My CAD image shows the deck, side barriers, girder/stiffener details and end bracing. I confirmed that CAD rotation worked. This confirms that interaction, not exact component dimensions or structural adequacy. I did not capture a separate T02 analysis-dialog screenshot. The PDF includes a bending-moment envelope on p.21; its presence is verified, its numerical correctness is not independently established.
 
 ## 7. Findings
 
@@ -131,7 +134,7 @@ The supplied CAD image shows the deck, side barriers, girder/stiffener details a
 
 **Observed report inconsistency.** The input/material-selection table identifies `custom_concrete_45_3.5`, while Table 7.1 on p.53 describes the deck as **Concrete (M40)**. The same row gives volume 52.50 m³ and weight 131.25 MT.
 
-An assistant-assisted review of upstream commit `d74f56dd7f22925fb8148cabf5740ed8d1e39ff3` found the literal string `Concrete (M40) for Deck Slab` in `src/osdagbridge/core/reports/chap7.py`, line 22. That is a source-supported explanation for the grade label; my installed desktop commit is still unknown.
+With AI assistance, I reviewed upstream commit `d74f56dd7f22925fb8148cabf5740ed8d1e39ff3` and identified the literal string `Concrete (M40) for Deck Slab` in `src/osdagbridge/core/reports/chap7.py`, line 22. That is a source-supported explanation for the grade label; my installed desktop commit is still unknown.
 
 Proposed correction: construct the description from the selected deck grade in the report payload, escape the name safely for LaTeX, and avoid a fallback that silently labels unknown materials M40. Test a named grade and a custom grade. Any quantity or density correction is a separate change and requires tracing its calculation. No patch was applied or tested on my desktop.
 
@@ -153,7 +156,7 @@ The following are repeated observations, not additional independent bugs:
 - Table 4.3 reports total deflection 55.321 mm and FAIL, while Table 5.29 shows 22.19 mm, capacity 41.67 mm and UR 0.53 for its labelled load combination. The selection of results is not reconciled.
 - The G1–G2 diagonal capacity row gives demand 6.151 kN, capacity 18.160 kN and UR 0.570; the displayed demand/capacity quotient is about 0.339. The governing-result mapping remains unresolved.
 
-T01's wearing-course UI/saved-file mismatch is still open. Both T02 saved files contain density 24.0, but no new wearing-course screenshot was supplied to close that check.
+T01's wearing-course UI/saved-file mismatch is still open. Both T02 saved files contain density 24.0, but I did not capture a new wearing-course screenshot to close that check.
 
 ### Issue status
 
@@ -170,15 +173,15 @@ No issue or comment was published for this case. Relevant previously reviewed is
 | `05_deck_after.png` | Same deck property values in the after information dialog |
 | `T02_before.osi` / `T02_after.osi` | 580 identical saved fields, including all three steel selections and deck properties |
 | `T02_design_report.pdf` | Custom material labels, changed numerical results, design failures and report inconsistencies |
-| Tester statement | “CAD rotation worked” |
+| My interaction observation | “CAD rotation worked” |
 
 | Check | Disposition |
 | --- | --- |
-| Selected steel properties retained in supplied UI and saved snapshots | PASS |
-| Selected concrete properties retained in supplied UI and saved snapshots | PASS |
+| Selected steel properties retained in my UI and saved snapshots | PASS |
+| Selected concrete properties retained in my UI and saved snapshots | PASS |
 | Custom cross-bracing/end-diaphragm fields retained in saved snapshots | PASS for serialization; separate UI and solver use not verified |
-| All 580 saved fields stable between supplied before/after files | PASS |
-| CAD generation and rotation | PASS for display and the interaction confirmed by the tester |
+| All 580 saved fields stable between my before/after files | PASS |
+| CAD generation and rotation | PASS for display and the interaction I confirmed |
 | Report produced with changed material labels and some changed results | PASS for output generation only |
 | All structural checks pass | FAIL according to the generated report |
 | Report consistency | FAIL for the explicit discrepancies above |
@@ -192,7 +195,7 @@ The remaining checks will be collected separately. They are not fields for me to
 
 ## 9. My conclusion
 
-The custom values I actually entered remained visible and were preserved in both saved files. I could rotate the generated CAD model. Some reported calculations changed from T01, including allowable steel stress, deflection and connector resistance, but the report still contains failed design checks and inconsistent labels. The next step is a recorded three-run sequence with runtime dictionary capture, so I can compare the visible inputs, the engine state and the final outputs for each run.
+The custom values I actually entered remained visible and were preserved in both saved files. I could rotate the generated CAD model. Some reported calculations changed from T01, including allowable steel stress, deflection and connector resistance, but the report still contains failed design checks and inconsistent labels. I followed this case with the T03 three-run sequence and runtime dictionary capture to compare the visible inputs, engine state and outputs for each run.
 
 ## Appendix A — Source reference and capture-method limits
 

@@ -1,5 +1,8 @@
 # T01 — Desktop baseline: execution completed, design checks failed
 
+**Packaged evidence:** [evidence/T01/](../evidence/T01/). File names below refer to this folder or its recorded session subfolder.
+
+
 **Tester:** Harish Raghav S  
 **Test date:** 8 November 2026  
 **Evidence reviewed:** six screenshots, the saved input file and the generated design report  
@@ -51,7 +54,7 @@ PDF references below use the physical page number in a PDF viewer. The printed p
 | Steel grades | E 350A for girder, cross bracing and end diaphragm | E 350A for all three | E 350A for all three, p.8 | Grade labels match |
 | Deck grade | M40 | M40 | M40, p.8 | Match |
 | Main girders | Four shown in typical-section illustration | 4 | 4, p.9 | Consistent with illustration and saved value |
-| Girder spacing | Dimension text is clipped in supplied additional-input image | 2.1 m | 2.1 m, p.9 | File/report match; not independently readable in screenshot |
+| Girder spacing | Dimension text is clipped in my additional-input image | 2.1 m | 2.1 m, p.9 | File/report match; not independently readable in screenshot |
 | Deck overhang | Dimension text is clipped | 1.05 m | 1.05 m, p.9 | File/report match |
 | Overall width | Not legibly captured | 8.4 m | 8.4 m, p.9 | File/report match; runtime mesh width not verified |
 | Deck thickness | 250 mm in illustration | 250.0 mm | 250.0 mm, p.9 | Match |
@@ -106,7 +109,7 @@ The full input appendix preserves every saved field. The main settings affecting
 
 The completion screenshot records all visible design stages finishing and a total solution time of 125.99 seconds. The CAD screenshot shows the deck, both side barriers, longitudinal girder webs, repeated stiffeners and transverse end bracing. The model was generated and displayed.
 
-A still image cannot establish rotation responsiveness, hidden-member correctness or exact CAD dimensions. I have not marked those checks as passed. The supplied CAD image is cropped to the model and does not include the main output dock.
+A still image cannot establish rotation responsiveness, hidden-member correctness or exact CAD dimensions. I have not marked those checks as passed. My CAD image is cropped to the model and does not include the main output dock.
 
 ### Girder 1 analysis screen
 
@@ -236,7 +239,7 @@ No exact issue describing F02 or F03 was found in that snapshot. F01's fixed pas
 | Girder 1 / SW bending-moment plot generation | PASS for display; numerical correctness not independently validated |
 | Structural design | FAIL as reported by the application; fatigue and total-deflection failures are documented |
 | Internal consistency of report/display | FAIL for the explicit contradictions above |
-| Full input/output dictionary verification | Not verified: live dictionaries were not supplied |
+| Full input/output dictionary verification | Not verified: I did not capture live dictionaries |
 | Main output-dock status and design ratios | Not captured |
 | CAD interaction and exact dimensional accuracy | Not verified |
 | Custom steel and concrete retention | Not tested as a controlled custom-material case |
@@ -244,15 +247,15 @@ No exact issue describing F02 or F03 was found in that snapshot. F01's fixed pas
 | Three consecutive unlock/change/design runs | Not executed in this evidence set |
 | Save/reload state preservation | Not tested |
 
-Before changing this baseline, the useful remaining captures are the main output dock, the current wearing-course panel paired with a new saved input, and the installed source commit. These are follow-up evidence requests, not blanks for the tester to edit in this note.
+For T01, I did not capture the main output dock, a new wearing-course UI/save comparison or the installed source commit. Those gaps remain part of this case record; later tests provide separate evidence.
 
 ## 8. My conclusion
 
-The baseline completed and produced useful outputs, but I cannot call it a passing bridge design. The fatigue and total-deflection checks failed in the generated report. I also found contradictions in the report's status text and units, and a reaction mismatch within the analysis screen. The next case will use explicit custom steel and deck properties while keeping the geometry unchanged, so I can check whether those properties survive the design run. I will retain this baseline and its failures for comparison.
+The baseline completed and produced useful outputs, but I cannot call it a passing bridge design. The fatigue and total-deflection checks failed in the generated report. I also found contradictions in the report's status text and units, and a reaction mismatch within the analysis screen. I followed this baseline with T02, using explicit custom steel and deck properties while keeping the geometry unchanged. I retained the baseline and its failures for comparison.
 
 ## Appendix A — Source review references
 
-The code references below are from an assistant-assisted review of the public upstream source, separate from my desktop execution. No source change was applied to my application and no suggested fix was regression-tested. The installed desktop commit remains unverified.
+I used AI assistance for the public-source review referenced below. That review is separate from my desktop execution. No source change was applied to my application and no suggested fix was regression-tested. The installed desktop commit remains unverified.
 
 - [Fixed pass statements, executive_summary.py](https://github.com/Nidhikhare12/OsdagBridge/blob/d74f56dd7f22925fb8148cabf5740ed8d1e39ff3/src/osdagbridge/core/reports/executive_summary.py#L233)
 - [Girder-dimension rendering, chap2.py](https://github.com/Nidhikhare12/OsdagBridge/blob/d74f56dd7f22925fb8148cabf5740ed8d1e39ff3/src/osdagbridge/core/reports/chap2.py#L240)
@@ -260,7 +263,7 @@ The code references below are from an assistant-assisted review of the public up
 
 ## Appendix B — Exact saved input
 
-The following is a verbatim text copy of the supplied `T01_inputs.osi`; YAML types and values have not been normalized. This preserves the complete parameter combination without requiring screenshots of every input tab. The original file's SHA-256 is `3fe41ea929d19937b1b995e6b71807db55016625c9a0265928ea61f1e1d8f15a`.
+The following is a verbatim text copy of my `T01_inputs.osi`; YAML types and values have not been normalized. This preserves the complete parameter combination without requiring screenshots of every input tab. The original file's SHA-256 is `3fe41ea929d19937b1b995e6b71807db55016625c9a0265928ea61f1e1d8f15a`.
 
 ```yaml
 bl_irc_class_sv: true

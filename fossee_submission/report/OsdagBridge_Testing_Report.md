@@ -39,7 +39,7 @@ I used a recorder that wraps the original design method in memory and calls it o
 
 ### Status conventions
 
-PASS means the stated functional check passed. FAIL identifies an observed defect or a software-reported engineering failure, with the category made explicit. Cancelled retains a cancellation outcome without calling it an unexpected crash. Inconclusive means the supplied evidence does not establish the intended scenario.
+PASS means the stated functional check passed. FAIL identifies an observed defect or a software-reported engineering failure, with the category made explicit. Cancelled retains a cancellation outcome without calling it an unexpected crash. Inconclusive means the available evidence does not establish the intended scenario.
 
 I compared values in the same units and allowed for rounding in the display. I also checked beyond the selected grade name, because a correct name does not prove that every calculation used the entered properties. I recorded videos separately. The comparisons in this report use my screenshots, saved files and logs; the video files were not independently reviewed for this report.
 
@@ -384,7 +384,7 @@ Deflection summaries: T03-R1/R3 per-girder maximum total deflection is 55.321 mm
 
 ## 5.1  Requirement coverage and limits
 
-| Screening requirement | Evidence supplied | Practical limit |
+| Screening requirement | Evidence recorded | Practical limit |
 | --- | --- | --- |
 | Basic and additional inputs | 20/25/30 m spans; 7.5/9 m widths; 0/10-degree skew; 250/300 mm deck; 50/75 mm wearing course | Not every supported geometry or load option was tested |
 | Custom steel and concrete | Full custom properties; distinct CB/ED selections; runtime comparisons | Some downstream use fails or remains unverified |
@@ -444,7 +444,7 @@ For the isolated scripts, provide the T05B OSI or the T06 output JSON and the te
 
 ### Evidence handling
 
-I have kept the original evidence filenames and file bytes unchanged. Some case notes say “next test” or “not yet posted” because I wrote them while testing. The issue register in this final report gives the updated reporting status. I have also kept the original application-generated reports unchanged, including the errors discussed here.
+I have kept the original evidence filenames and file bytes unchanged. I updated the case-note wording and issue links for this submission without changing the observations or captured results. The issue register records the published findings. I have also kept the original application-generated reports unchanged, including the errors discussed here.
 
 ### What I would fix first
 

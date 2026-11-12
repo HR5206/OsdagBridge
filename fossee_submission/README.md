@@ -50,7 +50,7 @@ The recorded source revision from T03 onward is `d74f56dd7f22925fb8148cabf5740ed
 
 Within a captured session, `input_before.json` records what was sent to the core design call, `input_after.json` records its state afterward, and `output_after.json` records the resulting dictionary. Status and runtime files provide exception, timing and selected propagation evidence. Full inputs are retained so reviewers can inspect parameters not repeated in the main report.
 
-Original evidence files are unchanged. Historical case notes may say “next test” or “not yet posted”; the final report and live issue register supersede those progress statements. Original application-generated PDFs are preserved even where this review identifies incorrect wording or labels.
+I have kept the original evidence files unchanged. I updated the case-note wording and issue links without changing the recorded observations. The original application-generated PDFs are preserved, including the incorrect wording and labels discussed in my report.
 
 ## Optional reproduction
 
@@ -64,15 +64,25 @@ python scripts/reproduce_save_reset.py evidence/T05B/T05B_before.osi
 
 On the tested revision, this prints 300/75 before default expansion and 250/50 afterward, then intentionally raises an assertion. It isolates the save-path mechanism and does not run the GUI or write an OSI file.
 
-The result-routing reproduction takes the tested `transverse_member_design.py` source path and T06's `output_after.json` path:
+With this folder at the repository root and the source on the tested revision, the result-routing reproduction uses the source file and T06 output below:
 
 ```text
-python scripts/reproduce_ed_merge.py PATH_TO_TRANSVERSE_MEMBER_DESIGN_PY PATH_TO_T06_OUTPUT_AFTER_JSON
+python scripts/reproduce_ed_merge.py ../src/osdagbridge/desktop/ui/dialogs/transverse_member_design.py evidence/T06/session_20261111_175529_209781/run_01/output_after.json
 ```
 
 It executes the source's dictionary-merge block against captured output and confirms that cross-bracing values replace the distinct end-diaphragm values. These isolated reproductions are separate from the manual desktop tests.
 
 To rebuild the report, install ReportLab and Pillow. The script uses standard Helvetica and Courier fonts, so no separate font installation is required. Run `python scripts/build_report.py` from any directory. Rebuilding changes the report files, so regenerate checksums if distributing the changed package.
+
+## File integrity
+
+I included `.gitattributes` to prevent Git from changing line endings in the original evidence. The following read-only check compares the packaged files with the manifest:
+
+```text
+python scripts/verify_evidence.py
+```
+
+The manifest describes the original evidence bytes, not normalized text. The hash check should report zero problems after extracting this archive or checking out the corrected files.
 
 ## Limits
 

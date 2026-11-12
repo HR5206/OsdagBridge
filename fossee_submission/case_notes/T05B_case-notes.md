@@ -1,8 +1,11 @@
 # T05B — Save Input resets additional geometry
 
+**Packaged evidence:** [evidence/T05B/](../evidence/T05B/). File names below refer to this folder or its recorded session subfolder.
+
+
 **Date:** 10 November 2026  
 **Result:** FAIL — Save Input does not preserve the committed additional inputs.  
-**Scope:** Input persistence; no design calculation was executed or captured in this supplied attempt.
+**Scope:** Input persistence; no design calculation was executed or captured in this attempt.
 
 ## What I checked
 
@@ -14,7 +17,7 @@ The new evidence resolves a concrete cause of the T05 mismatch. I cannot retrosp
 
 ## Configuration and evidence
 
-The archive `t05b.7z` contains:
+The files extracted from my original `t05b.7z` archive are included under `evidence/T05B/`:
 
 - `t05b/T05B_before.osi`
 - `t05b/session_20261110_210307_226248/session.json`
@@ -30,7 +33,7 @@ All three steel selections use `custom_steel_345_500`: density 77 kN/m³, Fy 345
 
 Saving should write the current validated design inputs without replacing valid user-entered properties with defaults.
 
-| Field | After saving Additional Inputs, reported observation | Supplied OSI after Save Input | Source-function reproduction |
+| Field | After saving Additional Inputs, my observation | My OSI after Save Input | Source-function reproduction |
 |---|---:|---:|---|
 | typical_section.deck_thickness | 300 mm | 250 mm | 300 → 250 |
 | typical_section.wearing_course.thickness | 75 mm | 50 mm | 75 → 50 |
@@ -127,15 +130,15 @@ The first check below was reproduced against the existing defaults function. The
 
 ## Reporting and scope
 
-This is a confirmed persistence defect supported by my action-level observation, the saved OSI and a source-function reproduction. No successful 300/75 design is claimed from this archive. There are no T05B final calculation outputs, CAD or plot results to compare yet.
+This is a confirmed persistence defect supported by my observation, the saved OSI and a source-function reproduction. No successful 300/75 design is claimed from this archive. I did not run Design in T05B, so this case has no final calculation outputs, CAD or plot results.
 
-The proposed issue title is: **Save Input overwrites custom deck and wearing-course thicknesses with defaults**. It should be kept separate from the custom-material-map reload issue #19, unless an existing discussion already covers this exact save/default-expansion defect. No issue or comment was posted during this review.
+I published this finding as [issue #71: Save Input overwrites committed deck and wearing-course thicknesses with defaults](https://github.com/Nidhikhare12/OsdagBridge/issues/71). It is separate from the custom-material-map reload problem in issue #19.
 
 The earlier T05 evidence remains unchanged. Its component screenshots are still useful, but they describe the displayed 250 mm result state, not a verified 300 mm slab design.
 
 ## Duplicate-check record
 
-The open and closed upstream issue list retrieved on 10 November 2026 contained no issue specifically covering this Save Input thickness reset. Issue #19 describes a different custom-material reload path. Issue discussions should be checked again immediately before publishing. No live issue has been created for T05B yet.
+The open and closed upstream issue list retrieved on 10 November 2026 contained no issue specifically covering this Save Input thickness reset. Issue #19 describes a different custom-material reload path. I completed the later duplicate review before publishing issue #71 on 11 November 2026.
 
 ## Evidence checksums
 
